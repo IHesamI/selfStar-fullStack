@@ -12,35 +12,11 @@ services:
   server:
     build:
       context: ./server
-      dockerfile: Dockerfile.dev
+      dockerfile: DockerFile.dev
     volumes:
       - ./server:/app
     ports:
       - "3000:3000"
-  postgres:
-    container_name: container-pg
-    image: hub.yottab.io/library/postgres@sha256:afb33700d65f946f824415a0030e902481694532b93928f27895f55ba65bb570
-    hostname: localhost
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: test_db
-    restart: unless-stopped
-
-  pgadmin:
-    container_name: container-pgadmin
-    image: docker.arvancloud.ir/dpage/pgadmin4
-    depends_on:
-      - postgres
-    ports:
-      - "5050:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    restart: unless-stopped
-
   nginx:
     build:
       context: ./nginx

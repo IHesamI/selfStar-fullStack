@@ -1,4 +1,4 @@
-FROM nginx
+FROM docker.arvancloud.ir/nginx
 
 RUN rm /etc/nginx/conf.d/default.conf
 
